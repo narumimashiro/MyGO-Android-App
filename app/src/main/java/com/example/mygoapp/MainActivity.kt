@@ -15,21 +15,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-
-        // enable to set fullscreen what can switch next page by tapping
-        var fullScreenLayout = findViewById<ConstraintLayout>(R.id.main)
-        fullScreenLayout.setOnClickListener {
-            startActivity(Intent(this, TopPage::class.java))
-        }
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        var tapText = findViewById<TextView>(R.id.tapText)
-        var blinkAnimation = AnimationUtils.loadAnimation(this, R.anim.blink)
+        // enable to set fullscreen what can switch next page by tapping
+        val fullScreenLayout = findViewById<ConstraintLayout>(R.id.main)
+        fullScreenLayout.setOnClickListener {
+            startActivity(Intent(this, TopPage::class.java))
+        }
+
+        val tapText = findViewById<TextView>(R.id.tapText)
+        val blinkAnimation = AnimationUtils.loadAnimation(this, R.anim.blink)
         tapText.startAnimation(blinkAnimation)
     }
 }

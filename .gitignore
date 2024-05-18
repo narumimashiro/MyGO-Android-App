@@ -38,3 +38,21 @@ local.properties
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# Ignore all .idea folder content
+.idea/*
+
+# Except for the following files which should be shared
+!.idea/gradle.xml
+!.idea/kotlinc.xml
+
+# Ignore deploymentTargetSelector.xml specifically
+.idea/deploymentTargetSelector.xml
+
+# Ignore user-specific configurations
+.idea/dictionaries/
+.idea/inspectionProfiles/profiles_settings.xml
+
+# Ignore all workspace.xml and tasks.xml
+.idea/workspace.xml
+.idea/tasks.xml

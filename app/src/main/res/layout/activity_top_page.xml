@@ -7,12 +7,19 @@
     android:layout_height="match_parent"
     tools:context=".TopPage">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MyGO!!!!!"
-        android:textSize="48sp"
-        tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="312dp" />
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/menu_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp" >
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
