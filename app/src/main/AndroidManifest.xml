@@ -15,9 +15,6 @@
         android:theme="@style/Theme.MyGOApp"
         tools:targetApi="31">
         <activity
-            android:name=".TopPage"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -26,6 +23,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".TopPage"
+            android:exported="false" />
+        <activity
+            android:name=".view.WebviewScreen"
+            android:exported="false" />
     </application>
 
 </manifest>
