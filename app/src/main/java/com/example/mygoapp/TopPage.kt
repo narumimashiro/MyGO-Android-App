@@ -2,8 +2,6 @@ package com.example.mygoapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.webkit.WebView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -20,17 +18,24 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.mygoapp.ui.theme.AppTheme
 import com.example.mygoapp.view.WebviewScreen
 
 data class Topic(val name: String)
@@ -40,7 +45,7 @@ class TopPage: ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TopPage {
-                TopicChip(topic = Topic("Sample Topic"))
+//                TopicChip(topic = Topic("Sample Topic"))
                 TopPageView()
             }
         }
@@ -49,25 +54,50 @@ class TopPage: ComponentActivity() {
 
 @Composable
 fun TopPage(content: @Composable () -> Unit) {
-    content()
+    AppTheme {
+        content()
+    }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopPageView() {
+    Scaffold(
+        topBar = {
+            CenterAlignedTopAppBar(
+                title = {
+                    Text(
+                        "Menu",
+                        color = Color.Black
+                    )
+                },
+                modifier = Modifier
+                    .padding(top = 16.dp),
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer
+                )
+            )
+        },
+        content = { paddingValues ->
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues))
+        }
+    )
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("", style = MaterialTheme.typography.headlineLarge)
+
         }
         BannerCardLink(
             imageId = R.drawable.mygo_banner,
             url = "https://bang-dream.bushimo.jp/mygo/",
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(10.dp)
+                .padding(0.dp)
         )
     }
 }
@@ -75,11 +105,13 @@ fun TopPageView() {
 @Composable
 fun BannerCardLink(imageId: Int, url: String, modifier: Modifier = Modifier) {
     val context = LocalContext.current
+    val bannerHeight = LocalConfiguration.current.screenHeightDp.dp * 0.3f
 
     Card(
         modifier = modifier
             .padding(10.dp)
             .fillMaxWidth()
+            .height(bannerHeight)
             .wrapContentHeight()
             .clickable {
                 val intent = Intent(context, WebviewScreen::class.java).apply {
@@ -95,7 +127,6 @@ fun BannerCardLink(imageId: Int, url: String, modifier: Modifier = Modifier) {
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .height(150.dp)
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(3.dp))
         )

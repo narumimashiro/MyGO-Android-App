@@ -43,6 +43,7 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.ui.text.google.fonts)
     val lifecycleVersion = "2.7.0"
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
@@ -95,4 +96,14 @@ dependencies {
     implementation("androidx.compose.runtime:runtime-livedata")
     // Optional - Integration with RxJava
     implementation("androidx.compose.runtime:runtime-rxjava2")
+
+    implementation("io.coil-kt:coil-compose:2.3.0")
+    implementation("com.google.dagger:hilt-android:2.42")
+    kapt("com.google.dagger:hilt-android-compiler:2.42")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+//    val accompanistVersion = "0.32.0"
+//    implementation("com.google.accompanist:accompanist-insets:$accompanistVersion")
+//    implementation("com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion")
+//    implementation("com.google.accompanist:accompanist-pager:$accompanistVersion")
+//    implementation("com.google.accompanist:accompanist-pager-indicators:$accompanistVersion")
 }
